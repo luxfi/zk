@@ -26,7 +26,7 @@ func fixtureEnvelope() *ZProofEnvelope {
 		VerifierID:           config.VerifierP3QSTARKFRISHA3PQ,
 		HashSuiteID:          config.HashSuiteSHA3NIST,
 		IdentitySchemeID:     config.SigSchemeMLDSA65,
-		FinalitySchemeID:     config.SigSchemePulsarM65,
+		FinalitySchemeID:     config.SigSchemePulsar65,
 		PublicInputsHash:     pad48(0x11),
 		VerifierKeyHash:      pad48(0x22),
 		ProgramOrAirID:       pad16(0x33),
@@ -197,7 +197,7 @@ func TestZProofEnvelope_TranscriptHash_FieldMutationChangesHash(t *testing.T) {
 		{"VerifierID", func(e *ZProofEnvelope) { e.VerifierID = config.VerifierSP1CompressedSTARKPQ }},
 		{"HashSuiteID", func(e *ZProofEnvelope) { e.HashSuiteID = config.HashSuiteBLAKE3Legacy }},
 		{"IdentitySchemeID", func(e *ZProofEnvelope) { e.IdentitySchemeID = config.SigSchemeMLDSA87 }},
-		{"FinalitySchemeID", func(e *ZProofEnvelope) { e.FinalitySchemeID = config.SigSchemePulsarM87 }},
+		{"FinalitySchemeID", func(e *ZProofEnvelope) { e.FinalitySchemeID = config.SigSchemePulsar87 }},
 		{"PublicInputsHash", func(e *ZProofEnvelope) { e.PublicInputsHash[0] ^= 0xFF }},
 		{"VerifierKeyHash", func(e *ZProofEnvelope) { e.VerifierKeyHash[0] ^= 0xFF }},
 		{"ProgramOrAirID", func(e *ZProofEnvelope) { e.ProgramOrAirID[0] ^= 0xFF }},
@@ -259,7 +259,7 @@ func TestHashZPublicInputs_FieldMutationChangesHash(t *testing.T) {
 		{"EpochCommitmentHash", func(in *ZPublicInputs) { in.EpochCommitmentHash[0] ^= 0xFF }},
 		{"HashSuiteID", func(in *ZPublicInputs) { in.HashSuiteID = config.HashSuiteBLAKE3Legacy }},
 		{"IdentitySchemeID", func(in *ZPublicInputs) { in.IdentitySchemeID = config.SigSchemeMLDSA87 }},
-		{"FinalitySchemeID", func(in *ZPublicInputs) { in.FinalitySchemeID = config.SigSchemePulsarM87 }},
+		{"FinalitySchemeID", func(in *ZPublicInputs) { in.FinalitySchemeID = config.SigSchemePulsar87 }},
 		{"ProofPolicyID", func(in *ZPublicInputs) { in.ProofPolicyID = config.ProofPolicySTARKFRIKeccak }},
 	}
 	for _, c := range cases {
@@ -305,7 +305,7 @@ func fixturePublicInputs() *ZPublicInputs {
 		EpochCommitmentHash:   pad48(0xAC),
 		HashSuiteID:           config.HashSuiteSHA3NIST,
 		IdentitySchemeID:      config.SigSchemeMLDSA65,
-		FinalitySchemeID:      config.SigSchemePulsarM65,
+		FinalitySchemeID:      config.SigSchemePulsar65,
 		ProofPolicyID:         config.ProofPolicySTARKFRISHA3PQ,
 	}
 }

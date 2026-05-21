@@ -85,7 +85,7 @@ func newHappyPathBundle(t *testing.T) *happyPathBundle {
 		VerifierID:           config.VerifierP3QSTARKFRISHA3PQ,
 		HashSuiteID:          config.HashSuiteSHA3NIST,
 		IdentitySchemeID:     config.SigSchemeMLDSA65,
-		FinalitySchemeID:     config.SigSchemePulsarM65,
+		FinalitySchemeID:     config.SigSchemePulsar65,
 		PublicInputsHash:     publicInputsHash,
 		VerifierKeyHash:      padBytes48(0x22),
 		ProgramOrAirID:       padBytes16(0x33),

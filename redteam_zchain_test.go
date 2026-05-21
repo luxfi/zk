@@ -303,7 +303,7 @@ func TestF85_HashZPublicInputs_BindsEveryField(t *testing.T) {
 		EpochCommitmentHash:   fill48Z(0x1B),
 		HashSuiteID:           config.HashSuiteSHA3NIST,
 		IdentitySchemeID:      config.SigSchemeMLDSA65,
-		FinalitySchemeID:      config.SigSchemePulsarM65,
+		FinalitySchemeID:      config.SigSchemePulsar65,
 		ProofPolicyID:         config.ProofPolicySTARKFRISHA3PQ,
 	}
 	baseHash := HashZPublicInputs(base)
@@ -331,7 +331,7 @@ func TestF85_HashZPublicInputs_BindsEveryField(t *testing.T) {
 		{"EpochCommitmentHash", func(in *ZPublicInputs) { in.EpochCommitmentHash[0] ^= 1 }},
 		{"HashSuiteID", func(in *ZPublicInputs) { in.HashSuiteID = config.HashSuiteBLAKE3Legacy }},
 		{"IdentitySchemeID", func(in *ZPublicInputs) { in.IdentitySchemeID = config.SigSchemeMLDSA87 }},
-		{"FinalitySchemeID", func(in *ZPublicInputs) { in.FinalitySchemeID = config.SigSchemePulsarM87 }},
+		{"FinalitySchemeID", func(in *ZPublicInputs) { in.FinalitySchemeID = config.SigSchemePulsar87 }},
 		{"ProofPolicyID", func(in *ZPublicInputs) { in.ProofPolicyID = config.ProofPolicySTARKFRIKeccak }},
 	}
 	for _, tc := range cases {
@@ -594,7 +594,7 @@ func TestF91_TranscriptHash_BindsCanonicalPartsList(t *testing.T) {
 		ProofFormatID:    config.ProofFormatP3QBinaryV1,
 		VerifierID:       config.VerifierP3QSTARKFRISHA3PQ,
 		IdentitySchemeID: config.SigSchemeMLDSA65,
-		FinalitySchemeID: config.SigSchemePulsarM65,
+		FinalitySchemeID: config.SigSchemePulsar65,
 	}
 	parts := [][]byte{
 		[]byte(envelopeProtocolTag),
