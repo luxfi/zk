@@ -31,35 +31,35 @@ const AccountIDCustomization = "LUX_ACCOUNT_ID_V1"
 //
 // Field roles:
 //
-//   AccountID            48-byte SHAKE256-384 derivation over (profile_id,
-//                        chain_id, scheme, compact_pubkey). Bound first
-//                        in every op transcript so a forger who replaces
-//                        the record's pubkey bytes still has to forge
-//                        the AccountID derivation chain.
-//   SchemeID             FIPS 204 ML-DSA parameter set the wallet signs
-//                        under. ML-DSA-65 is the production default.
-//   CompactPubkey        canonical encoded public key (ML-DSA-65 is
-//                        1952 bytes per FIPS 204). Inline-storable.
-//   CompactPubkeyHash    SHAKE256-384 hash of CompactPubkey. Indexed
-//                        alongside AccountID for fast equality checks.
-//   ExpandedPubkeyHash   EIP-8051 / EthDilithium expanded form hash —
-//                        the 48-byte commitment over the matrix-A
-//                        expansion. Stored when the chain's executor
-//                        needs the expanded form (e.g. EVM precompile);
-//                        otherwise zero.
-//   ExpandedPubkeyLoc    where the expanded pubkey lives (inline /
-//                        state-trie / off-chain CAS). Defaults to
-//                        PubkeyLocInline; off-chain locations require
-//                        the executor to resolve before signature verify.
-//   Status               key lifecycle state. KeyStatusActive is the
-//                        only state under which signatures verify.
-//   ValidFromEpoch       first epoch the key is admissible.
-//   ValidUntilEpoch      last epoch the key is admissible (inclusive);
-//                        0 means "no expiry."
-//   RotationPolicyHash   48-byte commitment to the off-chain rotation
-//                        policy (cadence, recovery key list, k-of-n
-//                        threshold). Zero means "no rotation policy
-//                        pinned" (the chain's default applies).
+//	AccountID            48-byte SHAKE256-384 derivation over (profile_id,
+//	                     chain_id, scheme, compact_pubkey). Bound first
+//	                     in every op transcript so a forger who replaces
+//	                     the record's pubkey bytes still has to forge
+//	                     the AccountID derivation chain.
+//	SchemeID             FIPS 204 ML-DSA parameter set the wallet signs
+//	                     under. ML-DSA-65 is the production default.
+//	CompactPubkey        canonical encoded public key (ML-DSA-65 is
+//	                     1952 bytes per FIPS 204). Inline-storable.
+//	CompactPubkeyHash    SHAKE256-384 hash of CompactPubkey. Indexed
+//	                     alongside AccountID for fast equality checks.
+//	ExpandedPubkeyHash   EIP-8051 / EthDilithium expanded form hash —
+//	                     the 48-byte commitment over the matrix-A
+//	                     expansion. Stored when the chain's executor
+//	                     needs the expanded form (e.g. EVM precompile);
+//	                     otherwise zero.
+//	ExpandedPubkeyLoc    where the expanded pubkey lives (inline /
+//	                     state-trie / off-chain CAS). Defaults to
+//	                     PubkeyLocInline; off-chain locations require
+//	                     the executor to resolve before signature verify.
+//	Status               key lifecycle state. KeyStatusActive is the
+//	                     only state under which signatures verify.
+//	ValidFromEpoch       first epoch the key is admissible.
+//	ValidUntilEpoch      last epoch the key is admissible (inclusive);
+//	                     0 means "no expiry."
+//	RotationPolicyHash   48-byte commitment to the off-chain rotation
+//	                     policy (cadence, recovery key list, k-of-n
+//	                     threshold). Zero means "no rotation policy
+//	                     pinned" (the chain's default applies).
 type PQKeyRecord struct {
 	AccountID          [48]byte
 	SchemeID           config.WalletSchemeID

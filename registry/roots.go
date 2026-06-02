@@ -56,9 +56,9 @@ type ZRegistryRoots struct {
 // Order is the declaration order above; bumping the customization tag
 // is the only way to change the layout. The tag pins:
 //
-//   1. The exact set of roots bound. Adding a root bumps the tag.
-//   2. The exact order of binding. Re-ordering bumps the tag.
-//   3. The exact 48-byte width per field. Width changes bump the tag.
+//  1. The exact set of roots bound. Adding a root bumps the tag.
+//  2. The exact order of binding. Re-ordering bumps the tag.
+//  3. The exact 48-byte width per field. Width changes bump the tag.
 func (r *ZRegistryRoots) Hash() [48]byte {
 	if r == nil {
 		// Defined empty digest for the nil case. Surface as the

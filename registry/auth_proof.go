@@ -102,13 +102,13 @@ func nodeDigest(left, right [48]byte) [48]byte {
 //
 // Checks (fail-closed, in order):
 //
-//   1. txAuthRoot is non-zero.
-//   2. proof.LeafHash equals LeafDigest(accountID, txDigest).
-//      Closes the "wrong leaf with a valid inclusion path" attack.
-//   3. proof.LeafIndex fits within the proof depth (a 2^d-leaf tree
-//      admits LeafIndex < 2^d). Refuses an out-of-range index.
-//   4. Walk Siblings from leaf to root combining via nodeDigest; the
-//      final hash MUST equal txAuthRoot.
+//  1. txAuthRoot is non-zero.
+//  2. proof.LeafHash equals LeafDigest(accountID, txDigest).
+//     Closes the "wrong leaf with a valid inclusion path" attack.
+//  3. proof.LeafIndex fits within the proof depth (a 2^d-leaf tree
+//     admits LeafIndex < 2^d). Refuses an out-of-range index.
+//  4. Walk Siblings from leaf to root combining via nodeDigest; the
+//     final hash MUST equal txAuthRoot.
 //
 // Returns ErrAuthProofStaleEpoch when the caller-supplied txAuthRoot
 // is the all-zero sentinel — by convention the registry uses zero to

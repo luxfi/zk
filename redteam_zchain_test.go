@@ -60,8 +60,10 @@ func TestF80_VerifyZProofUnderProfile_RefusesNilProfile(t *testing.T) {
 // keyspace level; the values are open to in-place mutation.
 //
 // ATTACK: any call site that does:
-//   m, _ := registry.Lookup(vid)
-//   m.SupportsPolicyIDs = append(m.SupportsPolicyIDs, ProofPolicyGroth16BN254Forbid)
+//
+//	m, _ := registry.Lookup(vid)
+//	m.SupportsPolicyIDs = append(m.SupportsPolicyIDs, ProofPolicyGroth16BN254Forbid)
+//
 // has just authorised a classical Groth16 proof under the existing
 // VerifierID without going through Register's checks (which would
 // have refused VerifierID conflicts and required Version /
@@ -191,11 +193,12 @@ func TestF82_VerifierRegistry_RejectsForbiddenPolicyInSupportsList(t *testing.T)
 //
 // FIX: add a small matrix at Register time that asserts
 // (backend, format) is in the set of allowed pairs. Pair table:
-//   SP1CompressedSTARK    → STARKFRIBinaryV1, SP1BinaryV1
-//   RISC0SuccinctSTARK    → STARKFRIBinaryV1, RISC0BinaryV1
-//   P3QSTARKFRISHA3       → STARKFRIBinaryV1, P3QBinaryV1
-//   StoneCairoSTARK       → STARKFRIBinaryV1, StoneCairoBinaryV1
-//   StwoCircleSTARK       → STARKFRIBinaryV1, StwoCircleBinaryV1
+//
+//	SP1CompressedSTARK    → STARKFRIBinaryV1, SP1BinaryV1
+//	RISC0SuccinctSTARK    → STARKFRIBinaryV1, RISC0BinaryV1
+//	P3QSTARKFRISHA3       → STARKFRIBinaryV1, P3QBinaryV1
+//	StoneCairoSTARK       → STARKFRIBinaryV1, StoneCairoBinaryV1
+//	StwoCircleSTARK       → STARKFRIBinaryV1, StwoCircleBinaryV1
 func TestF83_VerifierRegistry_RejectsBackendFormatMismatch(t *testing.T) {
 	r := NewVerifierManifestRegistry(noopLog())
 	m := &VerifierManifest{
@@ -541,7 +544,7 @@ func TestF89_ZProofEnvelope_MarshalNilReceiver(t *testing.T) {
 func TestF90_UnmarshalZProofEnvelope_RefusesZeroEnums(t *testing.T) {
 	e := &ZProofEnvelope{
 		Version:   0x0001,
-		ProfileID: 1,        // non-zero, otherwise refused
+		ProfileID: 1, // non-zero, otherwise refused
 		ChainID:   1,
 		NetworkID: 1,
 		Epoch:     1,
