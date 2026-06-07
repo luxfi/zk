@@ -1,6 +1,6 @@
 module github.com/luxfi/zk
 
-go 1.26.3
+go 1.26.4
 
 require (
 	github.com/luxfi/consensus v1.25.14
