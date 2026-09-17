@@ -6,6 +6,7 @@ package zk
 import (
 	"errors"
 	"fmt"
+	"slices"
 	"sync"
 
 	"github.com/luxfi/consensus/config"
@@ -100,12 +101,7 @@ type VerifierManifest struct {
 
 // SupportsPolicy returns true iff pid is in m.SupportsPolicyIDs.
 func (m *VerifierManifest) SupportsPolicy(pid config.ProofPolicyID) bool {
-	for _, p := range m.SupportsPolicyIDs {
-		if p == pid {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(m.SupportsPolicyIDs, pid)
 }
 
 // Typed registry errors.

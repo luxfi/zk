@@ -157,7 +157,7 @@ func TestZProofEnvelope_Marshal_RoundTrip(t *testing.T) {
 // short buffer with a typed error rather than panicking.
 func TestZProofEnvelope_Unmarshal_Truncated(t *testing.T) {
 	orig := fixtureEnvelope().Marshal()
-	for cut := 0; cut < len(orig); cut++ {
+	for cut := range orig {
 		_, err := UnmarshalZProofEnvelope(orig[:cut])
 		if err == nil {
 			t.Errorf("UnmarshalZProofEnvelope accepted %d-byte truncated input; want error", cut)

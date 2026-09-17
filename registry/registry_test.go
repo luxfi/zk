@@ -564,7 +564,7 @@ func buildBatchRoot(leaves [][48]byte) (root [48]byte, proofs []MerkleProof) {
 
 	// Emit a proof for each of the original (un-padded) leaves.
 	proofs = make([]MerkleProof, len(leaves))
-	for idx := 0; idx < len(leaves); idx++ {
+	for idx := range leaves {
 		var siblings [][48]byte
 		cur := idx
 		for level := 0; level < depth; level++ {
@@ -593,13 +593,13 @@ func TestVerifyAuthPassed_HappyPath(t *testing.T) {
 		txs    [4][48]byte
 		leaves [4][48]byte
 	)
-	for i := 0; i < 4; i++ {
+	for i := range 4 {
 		accts[i] = [48]byte{byte(0x10 + i)}
 		txs[i] = [48]byte{byte(0xA0 + i)}
 		leaves[i] = LeafDigest(accts[i], txs[i])
 	}
 	root, proofs := buildBatchRoot(leaves[:])
-	for i := 0; i < 4; i++ {
+	for i := range 4 {
 		err := VerifyAuthPassed(root, accts[i], txs[i], proofs[i])
 		if err != nil {
 			t.Fatalf("leaf %d: %v", i, err)
@@ -621,7 +621,7 @@ func TestVerifyAuthPassed_RejectsWrongMerkleProof(t *testing.T) {
 		txs    [4][48]byte
 		leaves [4][48]byte
 	)
-	for i := 0; i < 4; i++ {
+	for i := range 4 {
 		accts[i] = [48]byte{byte(0x10 + i)}
 		txs[i] = [48]byte{byte(0xA0 + i)}
 		leaves[i] = LeafDigest(accts[i], txs[i])
